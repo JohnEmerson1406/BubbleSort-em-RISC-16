@@ -1,2 +1,52 @@
-begin:
-end:
+		movi 1,32768
+		movi 2,32767
+		movi 3,1
+
+loop:		beq 0,3,fim
+		movi 3,0
+		lw 4,0,tamanho
+		addi 4,4,-1
+
+inicio:		lw 5,4,vetor
+		addi 4,4,-1
+		lw 6,4,vetor
+		nand 5,5,5
+		addi 5,5,1
+		add 6,6,5
+		nand 6,1,6
+		beq 2,6,cont
+		nand 5,5,5
+		addi 5,5,1
+		lw 6,4,vetor
+		sw 5,4,vetor
+		addi 4,4,1
+		sw 6,4,vetor
+		addi 4,4,-1
+		movi 3,1
+
+cont:		beq 7,4,loop
+		beq 0,0,inicio
+
+fim:		lw 1,7,vetor
+		addi 7,7,1
+		lw 2,7,vetor
+		addi 7,7,1
+		lw 3,7,vetor
+		addi 7,7,1
+		lw 4,7,vetor
+		addi 7,7,1
+		lw 5,7,vetor
+		addi 7,7,1
+		lw 6,7,vetor
+		addi 7,7,1
+		movi 7,0
+		halt
+
+tamanho:	.fill 6
+
+vetor:		.fill 3
+		.fill 6
+		.fill 2
+		.fill 4
+		.fill 1
+		.fill 5
