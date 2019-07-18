@@ -1,10 +1,10 @@
 inicio:		lw 1,0,comparador
 		lw 2,0,negativo
-		movi 3,1
+		lw 3,0,boolean
 
 loop:		beq 0,3,fim
 		movi 3,0
-		movi 4,5
+		movi 4,6
 
 compara:	lw 5,4,vetor
 		addi 4,4,-1
@@ -17,38 +17,40 @@ compara:	lw 5,4,vetor
 		nand 5,5,5
 		addi 5,5,1
 
-swap:		lw 6,4,vetor
+troca:		lw 6,4,vetor
 		sw 5,4,vetor
 		addi 4,4,1
 		sw 6,4,vetor
 		addi 4,4,-1
-		movi 3,1
+		lw 3,0,boolean
 
 checa:		beq 7,4,loop
 		beq 0,0,compara
 
-fim:		lw 1,7,vetor
-		addi 7,7,1
+fim:		movi 7,0
+		lw 1,7,vetor
+		movi 7,1
 		lw 2,7,vetor
-		addi 7,7,1
+		movi 7,2
 		lw 3,7,vetor
-		addi 7,7,1
+		movi 7,3
 		lw 4,7,vetor
-		addi 7,7,1
+		movi 7,4
 		lw 5,7,vetor
-		addi 7,7,1
+		movi 7,5
 		lw 6,7,vetor
-		addi 7,7,1
-		movi 7,0
+		movi 7,6
+		lw 7,7,vetor
 		halt
 
 comparador:	.fill -32768
-
 negativo:	.fill 32767
+boolean:	.fill 1
 
 vetor:		.fill 3
 		.fill 6
 		.fill 2
 		.fill 4
 		.fill 1
+		.fill 7
 		.fill 5
